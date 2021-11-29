@@ -1,20 +1,19 @@
-import React, {useState} from 'react'
+import React from 'react'
 import Content from './Content'
 import Header from './Header'
 import Sider from './Sider'
-import Footer from './Footer'
+import TagView from './TagView'
 import { Layout } from 'antd';
 export default function LayOut() {
-
-  let [collapsed, setCollapsed] = useState(false);
+   
   return (
     <div>
       <Layout style={{ minHeight: '100vh' }}>
-        <Sider/>
+        <Sider className="siber-box"/>
         <Layout className="site-layout">
           <Header/>
+          <TagView/>
           <Content/>
-          <Footer/>          
         </Layout>
       </Layout>
     </div>
