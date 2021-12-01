@@ -39,8 +39,8 @@ export default function Index() {
   let [selectedRowKeys, setSelectedRowKeys] = useState([]);
   let [value, setValue] = useState('xlsx');
   let [FileName, setFileName] = useState('');
-  let [selectData, setSelectData] = useState([]);
-  let [type, setType] = useState(1);
+  // let [selectData, setSelectData] = useState([]);
+  // let [type, setType] = useState(1);
   let onSelectChange = selectedRowKeys => {
     setSelectedRowKeys( selectedRowKeys );
   };

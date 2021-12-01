@@ -1,5 +1,5 @@
 import React from 'react'
-import { Upload, message, Table, Tag, Space } from 'antd';
+import { Upload, message, Table, Tag } from 'antd';
 
 import { InboxOutlined } from '@ant-design/icons';
 const { Dragger } = Upload;
