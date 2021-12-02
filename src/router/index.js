@@ -8,10 +8,11 @@ const ArticleList = Loadble({loader: () => import('@/views/Article/ArticleList')
 const ArticlePublish = Loadble({loader: () => import('@/views/Article/ArticlePublish'), loading: Loading})
 const ArticleEdit = Loadble({loader: () => import('@/views/Article/ArticleEdit'), loading: Loading})
 const WordChart = Loadble({loader: () => import('@/views/Chart/WordChart'), loading: Loading})
+const WrapChart = Loadble({loader: () => import('@/views/Chart/WrapChart'), loading: Loading})
 const OutPutExcel = Loadble({loader: () => import('@/views/Excel/OutPutExcel'), loading: Loading})
 const UploadExcel = Loadble({loader: () => import('@/views/Excel/UploadExcel'), loading: Loading})
 const Guide = Loadble({loader: () => import('@/views/Guide'), loading: Loading})  
-
+const UserList = Loadble({loader: () => import('@/views/User/UserList'), loading: Loading})  
 // 路由表
 const  routes = [
   {
@@ -50,6 +51,14 @@ const  routes = [
   {
     path: '/guide',
     component: Guide
+  },
+  {
+    path: '/user/userList',
+    component: UserList
+  },
+  {
+    path: "/wrapChart",
+    component: WrapChart
   }
 ]
 

@@ -7,7 +7,7 @@ const user = require('./part/user.js');
 
 const jwt = require('jsonwebtoken');
 
-router.get('/user', async function(req, res) {
+router.get('/allUser', async function(req, res) {
     try {
       let list = await user.userList();
       res.send(list);      

@@ -6,7 +6,7 @@ let userList = () => {
       if(error) {
         reject(error);
       }
-      resolve(result);
+      resolve(result);    
     })
   })
 }

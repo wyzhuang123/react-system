@@ -41,6 +41,7 @@ const Index = (props) => {
     props.history.go(0);
   }
 
+  // 注册组件
   const Register = (props) => {
     let {isLogin} = props;
     if(!isLogin) {
@@ -102,31 +103,33 @@ const Index = (props) => {
       <div className="container">
           <div className="login-box">
               <h2>登录</h2>
-              <Form
-                    name="basic"
-                  >
-                    <Form.Item
-                      label="帐号"
-                      name="username"
-                      rules={[
-                        {
-                        },
-                      ]}
-                    >
-                      <Input  ref={username}/>
-                    </Form.Item>
-                    <Form.Item
-                      label="密码"
-                      name="password"
-                      rules={[
-                        {
-                        },
-                      ]}
-                    >
-                      <Input.Password ref={password}/>
-                    </Form.Item>
-                    <Register isLogin={isLogin}/>
-               </Form>
+              <Form name="basic">
+                
+                <Form.Item
+                  label="帐号"
+                  name="username"
+                  rules={[
+                    {
+                    },
+                  ]}
+                >
+                  <Input  ref={username}/>
+                </Form.Item>
+
+                <Form.Item
+                  label="密码"
+                  name="password"
+                  rules={[
+                    {
+                    },
+                  ]}
+                >
+                  <Input.Password ref={password}/>
+                </Form.Item>
+
+                <Register isLogin={isLogin}/>
+
+              </Form>
           </div>
       </div>
     )

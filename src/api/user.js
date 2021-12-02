@@ -1,5 +1,12 @@
 import request from '@/utils/request.js'
 
+export const allUser = () => {
+  return request({
+    method: 'GET',
+    url: '/allUser'
+  })
+}
+
 export const userRegister = (data) => {
   return request({
     method: 'POST',

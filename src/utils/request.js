@@ -5,10 +5,10 @@ const request = axios.create({
 })
 
 request.interceptors.request.use(function(config) {
-  let user = localStorage.getItem('user');
-  if(user) {
-    config.headers.token = JSON.parse(user).token;
-  }
+  // let user = localStorage.getItem('user');
+  // if(user) {
+  //   config.headers.token = JSON.parse(user).token;
+  // }
 
   return config;
 })
