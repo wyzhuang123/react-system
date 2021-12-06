@@ -8,32 +8,37 @@ const Index = (props) => {
   
   function onTagClose(title) {
   }
-  return (
-    <div className="tag-box">
-      <>
-        {
-          props.tagList.map((item) => {
-            if(item.title === '首页') {
-              return <Tag style={{marginRight: '10px', fontSize: '5px'}} key={item.path} color="processing">
-                        <Link to={item.path}>{item.title}</Link>
-                     </Tag>
-            } else {
-              return  <Tag closable onClose={() => {onTagClose(item.title)}} style={{marginRight: '10px', fontSize: '5px'}} key={item.path} color="processing">
-                        <Link to={item.path}>{item.title}</Link>
-                      </Tag>
-            }
-          })    
-        }
-
-      </>
-    </div>
-  )
+  if(props.tagViewShow) {
+    return (
+      <div className="tag-box">
+        <>
+          {
+            props.tagList.map((item) => {
+              if(item.title === '首页') {
+                return <Tag style={{marginRight: '10px', fontSize: '5px'}} key={item.path} color="processing">
+                          <Link to={item.path}>{item.title}</Link>
+                       </Tag>
+              } else {
+                return  <Tag closable onClose={() => {onTagClose(item.title)}} style={{marginRight: '10px', fontSize: '5px'}} key={item.path} color="processing">
+                          <Link to={item.path}>{item.title}</Link>
+                        </Tag>
+              }
+            })    
+          }
+  
+        </>
+      </div>
+    )
+  } else {
+    return null;
+  }
 }
 
 export default connect(
   state => {
     return {
-        tagList: state.tagList
+        tagList: state.tagList,
+        tagViewShow: state.app.settingTagView
     }
   },
   {

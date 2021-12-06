@@ -1,67 +1,40 @@
-import React from 'react'
+import React,{ useEffect } from 'react'
 import './index.less'
-import {
-  UserOutlined,
-  MessageOutlined,
-  PayCircleOutlined,
-  ShoppingCartOutlined
-} from '@ant-design/icons';
-export default function index() {
+import ShoppingMessage from '@/components/ShoppingMessage'
+
+const shoppingData = [
+  {
+    name: 'New Visits',
+    number: 1024,
+    icon: 'personal'
+  },
+  {
+    name: 'Messages',
+    number: 8181,
+    icon: 'message-square'
+  },
+  {
+    name: 'Purchases',
+    number: 9280,
+    icon: 'RMB'
+  },
+  {
+    name: 'Shoppings',
+    number: 13666,
+    icon: 'Shopping_Bag'
+  }
+]
+
+
+export default function Index() {
   return (
     <div>
       <div className="shopping-main-box">
-        <div>
-          <div className="photo">
-          <UserOutlined style={{
-            color: 'green', 
-            fontSize:'65px',
-            margin: '5px 5px'
-            }}/>
-          </div>
-          <div className="number">
-              <span style={{fontSize: '20px', color: 'gray'}}>New Visits</span>
-              <span style={{fontSize: '25px', textAlign: 'center'}}>1024</span>
-          </div>
-        </div>
-        <div>
-          <div className="photo">
-          <MessageOutlined  style={{
-            color: 'skyblue', 
-            fontSize:'65px',
-            margin: '5px 5px'
-            }}/>
-          </div>
-          <div className="number">
-              <span style={{fontSize: '20px', color: 'gray'}}>Messages</span>
-              <span style={{fontSize: '25px', textAlign: 'center'}}>8181</span>
-          </div>
-        </div>
-        <div>
-          <div className="photo">
-          <PayCircleOutlined  style={{
-            color: 'red', 
-            fontSize:'65px',
-            margin: '5px 5px'
-            }}/>
-          </div>
-          <div className="number">
-              <span style={{fontSize: '20px', color: 'gray'}}>Purchases</span>
-              <span style={{fontSize: '25px', textAlign: 'center'}}>9280</span>
-          </div>
-        </div>
-        <div>
-          <div className="photo">
-          <ShoppingCartOutlined style={{
-            color: 'rosybrown', 
-            fontSize:'65px',
-            margin: '5px 5px'
-            }}/>
-          </div>
-          <div className="number">
-              <span style={{fontSize: '20px', color: 'gray'}}>Shoppings</span>
-              <span style={{fontSize: '25px', textAlign: 'center'}}>13666</span>
-          </div>
-        </div>
+        {
+          shoppingData.map((item) => {
+              return <ShoppingMessage data={item} key={item.name}/>
+          })
+        }
       </div>
     </div>
   )

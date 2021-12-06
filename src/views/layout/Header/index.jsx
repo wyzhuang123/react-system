@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from 'react'
-import { Layout, Breadcrumb, Tooltip, Avatar } from 'antd';
-import FullScreen from '@/components/FullScreen'
+import { Layout, Breadcrumb } from 'antd';
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router-dom'
-import { SettingOutlined } from '@ant-design/icons';
+import FullScreen from '@/components/FullScreen'
+import Settings from '@/components/Settings'
+import Avatar from '@/components/Avatar'
 import './index.less'
 const { Header } = Layout;
 const Index = (props) => {
@@ -36,16 +37,8 @@ const Index = (props) => {
         </div>
       <div className="right-btns">
         <FullScreen/>
-        <Tooltip title="系统设置">
-          <SettingOutlined />
-        </Tooltip>
-          <div>
-            <Avatar 
-              size={45} 
-              src="https://img2.baidu.com/it/u=2287048747,916607753&fm=26&fmt=auto" 
-              shape="circle"
-            />
-          </div>
+        <Settings/>
+        <Avatar/>
       </div>
       </Header>
       <div style={{

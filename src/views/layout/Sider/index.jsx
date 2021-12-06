@@ -6,12 +6,15 @@ import { createFromIconfontCN } from '@ant-design/icons';
 import {connect} from 'react-redux';
 import {createAddTagAction} from '@/store/actions/taglist.js';
 import './index.less'
+
 const { SubMenu } = Menu;
 const { Sider } = Layout;
 const IconFont = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_2963763_3qye7lcqdl.js',
 });
 const user = JSON.parse(localStorage.getItem('user'));
+
+
 const Index = (props) => {
   let [selectKey, setSelectKey] = useState([]);
   function addTag(title, path) {

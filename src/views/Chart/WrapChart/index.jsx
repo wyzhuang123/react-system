@@ -1,10 +1,9 @@
-import React, {useEffect} from 'react';
+import React, {useEffect, useRef} from 'react';
 import * as echarts from 'echarts';
 const Index = () => {
-
+  let main = useRef(null);
   useEffect(() => {
-    window.addEventListener('load', () => {
-      let  myChart = echarts.init(document.getElementById('main'));
+      let  myChart = echarts.init(main.current);
       let option = {
         color: ['#80FFA5', '#00DDFF', '#37A2FF', '#FF0087', '#FFBF00'],
       title: {
@@ -187,14 +186,15 @@ const Index = () => {
         }
       ]
       }
-      myChart.setOption(option);
-    })
-
-  }, [])
+        myChart.setOption(option);      
+    }, [])
 
   return (
     <div>
-      <div id="main"></div>
+      <div ref={main} style={{
+        width: '100%',
+        height: '500px'
+      }}></div>
     </div>
   );
 }
