@@ -13,6 +13,9 @@ const Index = (props) => {
   let {pathname} = props.location;
   let {tagList} = props;
   let [currentTitle, setCurrentTitle] = useState('');
+
+  // 控制台警告信息：在使用useEffect时，当我们将函数的声明放在useEffect函数外面时
+  // 或者使用useState定义的历史变量,会报eslint警告
   useEffect(() => {
     tagList.forEach((item) => {
         if(item.path === pathname) {
@@ -23,7 +26,7 @@ const Index = (props) => {
           }
         }
     })
-  }, [pathname])
+  }, [pathname])  // eslint-disable-line react-hooks/exhaustive-deps
 
 
   return (

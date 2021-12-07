@@ -1,7 +1,6 @@
 import React, {useEffect, useRef} from 'react'
 import './index.less'
-// 引入 ECharts 主模块
-import * as echarts from 'echarts/lib/echarts';
+import * as echarts from 'echarts';
 
 export default function Index() {
   let main = useRef(null);
@@ -27,7 +26,7 @@ export default function Index() {
     <div>
       <div className="line-main-box" ref={main}>
       </div>
-
+    
     </div>
   )
 }

@@ -3,35 +3,39 @@ import { Table, Button, Collapse, Form, Input, Select, message,  } from 'antd';
 import { createFromIconfontCN } from '@ant-design/icons';
 import Excel from 'exceljs'
 import './index.less'
+
 const { Panel } = Collapse;
 const { Option } = Select;
 const IconFont = createFromIconfontCN({
   scriptUrl: '//at.alicdn.com/t/font_2963763_3qye7lcqdl.js',
 });
+
 const columns = [
   {
     title: 'Name',
-    dataIndex: 'name',
+    dataIndex: 'Name',
     key: 'Name'
   },
   {
     title: 'Age',
-    dataIndex: 'age',
+    dataIndex: 'Age',
     key: 'Age'
   },
   {
     title: 'Address',
-    dataIndex: 'address',
+    dataIndex: 'Address',
     key: 'Address'
   },
 ];
+
 const data = [];
+
 for (let i = 0; i < 9; i++) {
   data.push({
     key: i,
-    name: `Edward King ${i}`,
-    age: 32,
-    address: `London, Park Lane no. ${i}`,
+    Name: `Edward King ${i}`,
+    Age: 32,
+    Address: `London, Park Lane no. ${i}`,
   });
 }
 
@@ -39,10 +43,10 @@ export default function Index() {
   let [selectedRowKeys, setSelectedRowKeys] = useState([]);
   let [value, setValue] = useState('xlsx');
   let [FileName, setFileName] = useState('');
-  // let [selectData, setSelectData] = useState([]);
-  // let [type, setType] = useState(1);
+
+
   let onSelectChange = selectedRowKeys => {
-    setSelectedRowKeys( selectedRowKeys );
+    setSelectedRowKeys(selectedRowKeys);
   };
 
   let  handleChange = (e) => {
@@ -52,7 +56,7 @@ export default function Index() {
     setFileName(e.target.value);
   }
 
-  let fetchTableData = () => {
+  let fetchTableData = (type) => {
     const workbook = new Excel.Workbook();
 
     // 设置到处Excel的信息
@@ -66,7 +70,7 @@ export default function Index() {
     let Tablecolumns = [];
 
 
-
+    // 添加表头信息
     columns.map((item) => {
       Tablecolumns.push({
           header: item.title,
@@ -75,28 +79,30 @@ export default function Index() {
         })
       return true;
     })  
-
     sheet.columns = Tablecolumns;
 
+    // 添加表数据
     if(Array.isArray(data)) {
       // 添加表格数据
-      sheet.addRows(data);
-      // if(type === 1) {
-      // } else if(type === 0) {
-      //   for(let i = 0; i < selectedRowKeys; i++) {
-      //     if(data[i].key === i) {
-      //       setSelectData([...selectData, data[i]]);
-      //     }
-      //   }
-      //   console.log(selectData);
-      //   sheet.addRows(selectData);
-      // }
+      if(type === 'all') {
+        sheet.addRows(data);
+      } else {
+        let someData = [];
+        data.forEach((item) => {
+          if(selectedRowKeys.includes(item.key)) {
+            someData.push(item);
+          }
+        })
+        sheet.addRows(someData);
+        setSelectedRowKeys([]);
+      }
+
       // 设置每一列样式 居中
       const row = sheet.getRow(1);
       row.eachCell((cell, rowNumber) => {
         sheet.getColumn(rowNumber).alignment = {
           vertical: "middle",
-          horizontal: "center",
+          horizontal: "center"
         };
       });
 
@@ -130,6 +136,7 @@ export default function Index() {
     selectedRowKeys,
     onChange: onSelectChange,
   }
+
   return (
     <div>
       <Collapse defaultActiveKey={['1']} style={{marginBottom: '20px'}}>
@@ -150,7 +157,7 @@ export default function Index() {
               icon={<IconFont type="icon-file-text-fill"/>} 
               size="20"
               style={{marginRight: '10px', marginLeft: '30px'}}
-              onClick={fetchTableData}
+              onClick={() => {fetchTableData('all')}}
             >
               全部导出
             </Button>
@@ -158,6 +165,7 @@ export default function Index() {
               type="primary"  
               icon={<IconFont type="icon-file-text-fill"/>} 
               size="20" 
+              onClick={() => {fetchTableData('some')}}
             >
               导出已选项
             </Button>

@@ -3,10 +3,14 @@ import './index.less'
 import { Tag } from 'antd';
 import {withRouter, Link} from 'react-router-dom'
 import {connect} from 'react-redux'
-import {createAddTagAction} from '@/store/actions/taglist.js'
+import {createDeleteTagAction} from '@/store/actions/taglist.js'
 const Index = (props) => {
   
   function onTagClose(title) {
+    let { DELETE_TAG, tagList, history } = props;
+    DELETE_TAG(title);
+    console.log(props.tagList);
+    history.replace(tagList[tagList.length - 1].path);
   }
   if(props.tagViewShow) {
     return (
@@ -42,6 +46,6 @@ export default connect(
     }
   },
   {
-    DELETE_TAG: createAddTagAction
+    DELETE_TAG: createDeleteTagAction
   }
 )(withRouter(Index))

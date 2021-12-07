@@ -1,13 +1,17 @@
 import React from 'react'
 import { Upload, message, Table, Tag } from 'antd';
-
+import Excel from 'exceljs'
 import { InboxOutlined } from '@ant-design/icons';
 const { Dragger } = Upload;
 const props = {
   name: 'file',
   multiple: false,
-  onChange(info) {
-    const { status } = info.file;
+  async onChange(info) {
+    const workbook = new Excel.Workbook();
+    const result = await workbook.xlsx.readFile(info.file);
+    const { status } = info.file; 
+    console.log(info.file.response);
+    console.log(result);
     if (status !== 'uploading') {
       console.log(info.file, info.fileList);
     }
@@ -16,10 +20,7 @@ const props = {
     } else if (status === 'error') {
       message.error(`${info.file.name} file upload failed.`);
     }
-  },
-  onDrop(e) {
-    console.log('Dropped files', e.dataTransfer.files);
-  },
+  }
 };
 
 export default function index() {
@@ -61,29 +62,35 @@ export default function index() {
       ),
     }
   ];
-  const data = [
-    {
-      key: '1',
-      name: 'John Brown',
-      age: 32,
-      address: 'New York No. 1 Lake Park',
-      tags: ['nice', 'developer'],
-    },
-    {
-      key: '2',
-      name: 'Jim Green',
-      age: 42,
-      address: 'London No. 1 Lake Park',
-      tags: ['loser'],
-    },
-    {
-      key: '3',
-      name: 'Joe Black',
-      age: 32,
-      address: 'Sidney No. 1 Lake Park',
-      tags: ['cool', 'teacher'],
-    },
-  ];
+  // const data = [
+  //   {
+  //     key: '1',
+  //     name: 'John Brown',
+  //     age: 32,
+  //     address: 'New York No. 1 Lake Park',
+  //     tags: ['nice', 'developer'],
+  //   },
+  //   {
+  //     key: '2',
+  //     name: 'Jim Green',
+  //     age: 42,
+  //     address: 'London No. 1 Lake Park',
+  //     tags: ['loser'],
+  //   },
+  //   {
+  //     key: '3',
+  //     name: 'Joe Black',
+  //     age: 32,
+  //     address: 'Sidney No. 1 Lake Park',
+  //     tags: ['cool', 'teacher'],
+  //   },
+  // ];
+
+  // async function readExcelFile() {
+    
+  //   // let result = await workbook.xlsx.readFile(filename);
+  //   // console.log(result);
+  // }
   return (
     <div>
       <Dragger {...props}>
@@ -92,7 +99,7 @@ export default function index() {
           </p>
           <p className="ant-upload-text">点击文件传入框，传入Excel数据</p>
       </Dragger>
-      <Table bordered  columns={columns} dataSource={data} />   
+      <Table bordered  columns={columns}  />   
     </div>
   )
 }

@@ -1,26 +1,26 @@
-import React,{ useEffect } from 'react'
+import React from 'react'
 import './index.less'
 import ShoppingMessage from '@/components/ShoppingMessage'
 
 const shoppingData = [
   {
     name: 'New Visits',
-    number: 1024,
+    number: 102400,
     icon: 'personal'
   },
   {
     name: 'Messages',
-    number: 8181,
+    number: 81810,
     icon: 'message-square'
   },
   {
     name: 'Purchases',
-    number: 9280,
+    number: 92800,
     icon: 'RMB'
   },
   {
     name: 'Shoppings',
-    number: 13666,
+    number: 136660,
     icon: 'Shopping_Bag'
   }
 ]

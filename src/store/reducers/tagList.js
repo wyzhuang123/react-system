@@ -13,7 +13,7 @@ export default function tagListReducer(preState = initState, action) {
     case ADD_TAG:
       return [...preState, data];
     case DELETE_TAG:
-      return preState.filter(item => (item.title !== data.playload.title));
+      return preState.filter((item) => {return item.title !== data});
     default:
       return preState;
   }

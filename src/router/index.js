@@ -13,6 +13,8 @@ const OutPutExcel = Loadble({loader: () => import('@/views/Excel/OutPutExcel'), 
 const UploadExcel = Loadble({loader: () => import('@/views/Excel/UploadExcel'), loading: Loading})
 const Guide = Loadble({loader: () => import('@/views/Guide'), loading: Loading})  
 const UserList = Loadble({loader: () => import('@/views/User/UserList'), loading: Loading})  
+
+
 // 路由表
 const  routes = [
   {

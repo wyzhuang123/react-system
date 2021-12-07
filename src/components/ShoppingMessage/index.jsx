@@ -11,7 +11,7 @@ const Index = (props) => {
   let source = useRef(null);
   let target = useRef(null);
   useEffect(() => {
-    Typing(source.current, target.current);
+    Typing(source.current, target.current, 50);
   }, [])
   return (
     <div>

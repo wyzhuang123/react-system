@@ -41,12 +41,13 @@ const Index = (props) => {
     <div style={{backgroundColor: '#001529'}}>
         <Sider collapsible  className="siber-box">
           <Menu theme="dark" defaultSelectedKeys={['首页']} mode="inline" selectedKeys={selectKey}>
-            {
-              MenuList.map((item) => {
+            
+              {
+              MenuList.map((item) => { 
                   if(item.children) {
                     // 实现通过判断用户类型来决定渲染侧边栏
                     if(Array.isArray(item.role) || item.role === Number.parseInt(user.type)) {
-                      return  <SubMenu 
+                      return  (<SubMenu 
                                 key={item.title} 
                                 title={item.title} 
                                 icon={<IconFont type={'icon-' + item.icon} 
@@ -54,21 +55,21 @@ const Index = (props) => {
                               >
                           { 
                             item.children.map((items) => {
-                              return <Menu.Item key={items.path} >
+                              return (<Menu.Item key={items.path} >
                                         <Link 
                                         to={items.path} 
                                         onClick={() => addTag(items.title, items.path)}
                                         >
                                           <span>{items.title}</span>
                                         </Link>
-                                    </Menu.Item> 
+                                    </Menu.Item> )
                             })
                           }  
-                    </SubMenu>
+                    </SubMenu>)
                     }
                   } else {
                     if(Array.isArray(item.role) || item.role === Number.parseInt(user.type)) {
-                          return <Menu.Item key={item.path}>
+                          return (<Menu.Item key={item.path}>
                           <Link 
                             to={item.path} 
                             onClick={() => addTag(item.title, item.path)}
@@ -76,12 +77,13 @@ const Index = (props) => {
                             {item.icon ? <IconFont type={'icon-' + item.icon} style={{fontSize:'17px'}}/> : null}
                             <span>{item.title}</span>
                           </Link>
-                        </Menu.Item>
+                        </Menu.Item>)
                     }
 
                   }
               })
-            }
+              }
+            
           </Menu>
 
         </Sider>

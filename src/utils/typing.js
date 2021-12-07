@@ -1,6 +1,6 @@
 //  模仿打字的动态效果
-function Typing(dom, target, delay, increase = 15) {
-  if(typeof delay != Number && delay != null) {
+function Typing(dom, target, delay = 30) {
+  if(typeof delay != 'number' && delay != null) {
     throw new Error('Type Error, delay is not a Number!');
   }
   let i = 0;
@@ -17,25 +17,27 @@ function Typing(dom, target, delay, increase = 15) {
           clearInterval(timer);
           return;
         }
-      }, 30);
+      }, delay);
     return;
 
-    case "[object Number]":
-      // 数字
-      timer = setInterval(() => {
-        if(target.innerHTML - dom.innerHTML > increase) {
-          target.innerHTML += increase;
-        } else if (10 < target.innerHTML - dom.innerHTML < increase) {
-          target.innerHTML += 10;
-        } else if (target.innerHTML - dom.innerHTML <= 10){
-          target.innerHTML += 1;
-        }
+    // case "[object Number]":
+    //   // 数字
+    //   timer = setInterval(() => {
+    //     if(target.innerHTML - dom.innerHTML > increase) {
+    //       target.innerHTML += increase;
+    //     } else if (10 < target.innerHTML - dom.innerHTML < increase) {
+    //       target.innerHTML += 10;
+    //     } else if (target.innerHTML - dom.innerHTML <= 10){
+    //       target.innerHTML += 1;
+    //     }
 
-        if(target.innerHTML === dom.innerHTML) {
-          return;
-        }
-      }, 10000)
-
+    //     if(target.innerHTML === dom.innerHTML) {
+    //       return;
+    //     }
+    //   }, 10000)
+    // return;
+    default:
+      return;
   }
 
 }
